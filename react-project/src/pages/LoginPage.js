@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,37 +18,58 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Reset error messages
+    setEmailError("");
+    setPasswordError("");
+
     // Perform validation
-    if (!email || !password) {
-      setError("Please fill in all fields");
-    } else if (password.length < 8) {
-      setError("Password must be at least 8 characters long");
-    } else {
+    let isValid = true;
+
+    if (!email) {
+      setEmailError("Please enter your email");
+      isValid = false;
+    }
+
+    if (!password) {
+      setPasswordError("Please enter your password");
+      isValid = false;
+    }
+
+    if (isValid) {
       // Perform login logic here
-      // You can make an API call or handle authentication as per your requirements
-      setError("");
-      console.log("Logged in successfully!");
+      console.log("Login successful!");
     }
   };
 
   return (
-    <div>
-      <h2>Login Page</h2>
+    <div className="container mt-5">
+      <h2 className="text-center">Login Page</h2>
       <form onSubmit={handleSubmit}>
-        {error && <p>{error}</p>}
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
+        <div className="mb-3">
+          <label className="form-label">Email:</label>
+          <input
+            type="email"
+            className={`form-control ${emailError && "is-invalid"}`}
+            value={email}
+            onChange={handleEmailChange}
+          />
+          {emailError && <div className="invalid-feedback">{emailError}</div>}
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="mb-3">
+          <label className="form-label">Password:</label>
           <input
             type="password"
+            className={`form-control ${passwordError && "is-invalid"}`}
             value={password}
             onChange={handlePasswordChange}
           />
+          {passwordError && (
+            <div className="invalid-feedback">{passwordError}</div>
+          )}
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
       </form>
     </div>
   );
