@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, ModalBody, ModalFooter } from "react-bootstrap";
 
+import backgroundImage from "../images/backgroundImage.jpg"; <img src = {backgroundImage} />
+
 const RegistrationPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -78,86 +80,99 @@ const RegistrationPage = () => {
     return aadharNoRegex.test(aadharNo);
   };
 
-  return (
-    <div>
-      <h2>Registration Page</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">First Name:</label>
-          <input
-            type="text"
-            className={`form-control ${firstName ? "is-valid" : "is-invalid"}`}
-            value={firstName}
-            onChange={handleFirstNameChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Last Name:</label>
-          <input
-            type="text"
-            className={`form-control ${lastName ? "is-valid" : "is-invalid"}`}
-            value={lastName}
-            onChange={handleLastNameChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Email:</label>
-          <input
-            type="email"
-            className={`form-control ${
-              validateEmail(email) ? "is-valid" : "is-invalid"
-            }`}
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <div className="invalid-feedback">
-            Please enter a valid email address.
-          </div>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Contact No:</label>
-          <input
-            type="text"
-            className={`form-control ${
-              validateContactNo(contactNo) ? "is-valid" : "is-invalid"
-            }`}
-            value={contactNo}
-            onChange={handleContactNoChange}
-          />
-          <div className="invalid-feedback">
-            Please enter a valid contact number.
-          </div>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Aadhar No:</label>
-          <input
-            type="text"
-            className={`form-control ${
-              validateAadharNo(aadharNo) ? "is-valid" : "is-invalid"
-            }`}
-            value={aadharNo}
-            onChange={handleAadharNoChange}
-          />
-          <div className="invalid-feedback">
-            Please enter a valid Aadhar card number.
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Register
-        </button>
-      </form>
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Error</Modal.Title>
-        </Modal.Header>
-        <ModalBody>{error}</ModalBody>
-        <ModalFooter>
-          <button className="btn btn-secondary" onClick={handleCloseModal}>
-            Close
+  return (
+    <div style={backgroundStyle}>
+      <div className="container">
+        <h2 className="text-center text-light mb-4">Registration Page</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label text-light">First Name:</label>
+            <input
+              type="text"
+              className={`form-control ${
+                firstName ? "is-valid" : "is-invalid"
+              }`}
+              value={firstName}
+              onChange={handleFirstNameChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label text-light">Last Name:</label>
+            <input
+              type="text"
+              className={`form-control ${lastName ? "is-valid" : "is-invalid"}`}
+              value={lastName}
+              onChange={handleLastNameChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label text-light">Email:</label>
+            <input
+              type="email"
+              className={`form-control ${
+                validateEmail(email) ? "is-valid" : "is-invalid"
+              }`}
+              value={email}
+              onChange={handleEmailChange}
+            />
+            <div className="invalid-feedback text-light">
+              Please enter a valid email address.
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="form-label text-light">Contact No:</label>
+            <input
+              type="text"
+              className={`form-control ${
+                validateContactNo(contactNo) ? "is-valid" : "is-invalid"
+              }`}
+              value={contactNo}
+              onChange={handleContactNoChange}
+            />
+            <div className="invalid-feedback text-light">
+              Please enter a valid contact number.
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="form-label text-light">Aadhar No:</label>
+            <input
+              type="text"
+              className={`form-control ${
+                validateAadharNo(aadharNo) ? "is-valid" : "is-invalid"
+              }`}
+              value={aadharNo}
+              onChange={handleAadharNoChange}
+            />
+            <div className="invalid-feedback text-light">
+              Please enter a valid Aadhar card number.
+            </div>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Register
           </button>
-        </ModalFooter>
-      </Modal>
+        </form>
+
+        <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Error</Modal.Title>
+          </Modal.Header>
+          <ModalBody>{error}</ModalBody>
+          <ModalFooter>
+            <button className="btn btn-secondary" onClick={handleCloseModal}>
+              Close
+            </button>
+          </ModalFooter>
+        </Modal>
+      </div>
     </div>
   );
 };
