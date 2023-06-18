@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MyRegistration from "./MyRegistration";
 
 function AppLogin() {
   const navigate = useNavigate();
@@ -84,6 +85,8 @@ function AppLogin() {
               onClick={loginAction}
             />
           </form>
+          <h3>new user ? </h3> 
+         <a href="MyRegistration.js"> </a>  
 
           {isSuccess && <div className="alert alert-success">Success</div>}
           {isError && <div className="alert alert-danger">Error</div>}

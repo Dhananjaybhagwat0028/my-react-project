@@ -34,6 +34,10 @@ function MyNavigationLinks() {
               <Nav.Link as={Link} to={"/Aboutus"}>
                 About us
               </Nav.Link>
+
+              <Nav.Link as={Link} to={"/Contactus"}>
+                contact us
+              </Nav.Link>
         
               <Nav.Link onClick={logOutAction}>Log Out</Nav.Link>
             </Nav>
