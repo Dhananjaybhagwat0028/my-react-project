@@ -1,26 +1,49 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-//import MyNavigationLinksUsingButton from "./pages/navbar.js";
-import Homepage from "./pages/Homepage";
-import LoginPage from "./pages/LoginPage";
-import RegistrationPage from "./pages/RegistrationPage";
-import Navbar from "./pages/navbar";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
+import MyRegistration from "./pages/MyRegistration";
+import MyNavigationLinks from "./pages/MyNavigationLinks";
+import AppHome from "./pages/AppHome";
+import AppLogin from "./pages/AppLogin";
 
 function App() {
   return (
     <>
-      <div className="App">
-        <BrowserRouter>
-          {/* <MyNavigationLinksUsingButton /> */}
-          < Navbar /> 
-          <Homepage />
-          <RegistrationPage />
-          <LoginPage />
+      <BrowserRouter>
+        <MyNavigationLinks />
 
-        </BrowserRouter>
-      </div>
+        <Routes>
+          {/** 1 Route means 1 Page */}
+          <Route path="/" element={<h1>Hello</h1>} />
+          <Route path="/login" element={<AppLogin />} />
+
+          {/** Private Needs Protection */}
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <AppHome />
+              </ProtectedRoute>
+            }
+          />
+  
+      
+          <Route path="/registration" element={<MyRegistration />} />
+      
+          <Route path="*" element={<h1>Page Not Found</h1>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
+}
+
+// lets protect the pages
+function ProtectedRoute({ children }) {
+  let loginStatus = localStorage.getItem("loginStatus");
+  if (!loginStatus) {
+    return <Navigate to={"/login"} replace={true} />;
+  }
+
+  return children;
 }
 
 export default App;
