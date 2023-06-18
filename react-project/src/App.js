@@ -5,6 +5,7 @@ import MyNavigationLinks from "./pages/MyNavigationLinks";
 import AppHome from "./pages/AppHome";
 import AppLogin from "./pages/AppLogin";
 import Aboutus from "./pages/Aboutus";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
@@ -34,12 +35,13 @@ function App() {
               </ProtectedRoute>
             }
           />
-  
-      
+
           <Route path="/registration" element={<MyRegistration />} />
-      
+
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
+        
+        <Footer />
       </BrowserRouter>
     </>
   );
