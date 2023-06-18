@@ -4,6 +4,7 @@ import MyRegistration from "./pages/MyRegistration";
 import MyNavigationLinks from "./pages/MyNavigationLinks";
 import AppHome from "./pages/AppHome";
 import AppLogin from "./pages/AppLogin";
+import Aboutus from "./pages/Aboutus";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AppHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Aboutus"
+            element={
+              <ProtectedRoute>
+                <Aboutus />
               </ProtectedRoute>
             }
           />

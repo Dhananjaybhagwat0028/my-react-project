@@ -19,7 +19,7 @@ function MyNavigationLinks() {
     <>
       <Navbar bg="dark" data-bs-theme="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">My Project</Navbar.Brand>
+          <Navbar.Brand href="#home"> PAYBILL</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -29,6 +29,10 @@ function MyNavigationLinks() {
 
               <Nav.Link as={Link} to={"/registration"}>
                 Registration
+              </Nav.Link>
+
+              <Nav.Link as={Link} to={"/Aboutus"}>
+                About us
               </Nav.Link>
         
               <Nav.Link onClick={logOutAction}>Log Out</Nav.Link>
